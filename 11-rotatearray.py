@@ -20,10 +20,8 @@ from typing import List
 
 # Try 1
 # ez
-
 # Runtime: 1136 ms, faster than 18.91% 
 # Memory Usage: 25.3 MB, less than 96.40%
- 
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         """
@@ -38,10 +36,8 @@ class Solution:
 
 # Try 2
 # create new array with rotated values
-
 # Runtime: 220 ms, faster than 81.00% of Python3
 # Memory Usage: 25.3 MB, less than 96.40% of Python3
-
 class Solution2:
     def rotate(self, nums: List[int], k: int) -> None:
 
@@ -60,7 +56,6 @@ class Solution2:
 # Try 3
 # Runtime: 334 ms, faster than 40.15% of Python3 online submissions for Rotate Array.
 # Memory Usage: 25.4 MB, less than 96.40% of Python3 online submissions for Rotate Array.
-
 class Solution3:
     def rotate(self, nums: List[int], k: int) -> None:
         # taken from
@@ -72,6 +67,20 @@ class Solution3:
         nums[:] = nums[-k:] + nums[:-k]    
     
     
+
+# Try 4
+# do left rotations
+# Runtime: 1068 ms, faster than 19.19% of Python3 online submissions for Rotate Array.
+# Memory Usage: 25.3 MB, less than 96.15% of Python3 online submissions for Rotate Array.
+class Solution4:
+    def rotate(self, nums: List[int], k: int) -> None:
+        
+        # left_rotations = len(nums) - right_rotations
+        k = len(nums) - (k % len(nums))
+        for i in range(k):
+            nums.append(nums.pop(0))
+
+
 
 nums = [0,1,2,3,4,5,6,7,8,9]
 k = int(input('k: '))
