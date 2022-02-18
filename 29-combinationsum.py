@@ -43,3 +43,15 @@ class Solution:
         res = []
         backtrack(candidates, target, 0, [], res)        
         return res
+
+
+
+tests = [
+    [[2,3,6,7], 7],
+    [[2,3,5], 8],
+    [[2], 1]
+]
+solution = Solution()
+for test in tests:
+    print('test:', *test)
+    print('out: ', solution.combinationSum(test[0], test[1]), '\n')
