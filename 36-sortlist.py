@@ -15,8 +15,8 @@ class ListNode:
         self.next = next
     def __repr__(self):
         if self.next:
-            return f'({self.val}-> {self.next}'
-        return f'{self.val}->N)'
+            return f'{self.val}-> {self.next}'
+        return f'{self.val}.'
 
 
 
@@ -75,6 +75,32 @@ class Solution2:
 
 
 
+class Solution3:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        if not head: return head
+        
+        nodes = []
+
+        node = head
+        while node:
+            tmp = node.next
+            node.next = None
+            nodes.append(node)
+            node = tmp
+
+        nodes.sort(key=lambda x: x.val)
+
+        out = nodes.pop(0)
+        curr = out
+        while nodes:
+            curr.next = nodes.pop(0)
+            curr = curr.next
+
+        return out
+
+
+
 vals = [4,19,14,5,-3,1,8,5,11,15]
 head = ListNode()
 tmp = head
@@ -84,4 +110,4 @@ while vals:
         tmp.next = ListNode()
         tmp = tmp.next
 
-Solution2().sortList(head)
+Solution3().sortList(head)
