@@ -1,3 +1,3 @@
-# leetcode-private
+# leetcode
 
 Solutions to LeetCode's daily challenges
