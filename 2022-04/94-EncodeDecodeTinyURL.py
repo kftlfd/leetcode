@@ -12,6 +12,8 @@ Leetcode
 
 
 # https://leetcode.com/problems/encode-and-decode-tinyurl/discuss/1110529/Python-Use-two-dictionaries-explained
+# Runtime: 44 ms, faster than 57.31% of Python3 online submissions for Encode and Decode TinyURL.
+# Memory Usage: 13.9 MB, less than 28.19% of Python3 online submissions for Encode and Decode TinyURL.
 class Codec:
     def __init__(self):
         self.long_short = {}
