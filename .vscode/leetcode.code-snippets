@@ -1,0 +1,76 @@
+{
+  // Place your leetcode workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+
+  // Example:
+  // "Print to console": {
+  // 	"scope": "javascript,typescript",
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+
+  "Leetcode starter": {
+    "scope": "python",
+    "prefix": "lc",
+    "body": [
+      "$BLOCK_COMMENT_START",
+      "Leetcode",
+      "$0",
+      "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "",
+      "$1",
+      "$BLOCK_COMMENT_END",
+      "",
+      "from typing import List, Optional",
+      "",
+      ""
+    ],
+    "description": "Leetcode solution template"
+  },
+
+  "Leetcode solution testing 1": {
+    "scope": "python",
+    "prefix": "lct1",
+    "body": [
+      "s = Solution()",
+      "tests = [",
+      "",
+      "]",
+      "for t in tests:",
+      "    print(t)",
+      "    print()",
+      "    print()",
+      ""
+    ],
+    "description": "Leetcode solution testing simple"
+  },
+
+  "Leetcode solution testing 2": {
+    "scope": "python",
+    "prefix": "lct2",
+    "body": [
+      "s = Solution()",
+      "tests = [",
+      "    ('input',",
+      "     'output'),",
+      "]",
+      "for inp, exp in tests:",
+      "    res = None",
+      "    if res != exp:",
+      "        print('input:  ', inp)",
+      "        print('expect: ', exp)",
+      "        print('output: ', res)",
+      "print('Completed testing')",
+      ""
+    ],
+    "description": "Leetcode solution testing"
+  }
+}
