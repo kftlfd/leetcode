@@ -23,10 +23,10 @@
     "body": [
       "$BLOCK_COMMENT_START",
       "Leetcode",
-      "$0",
+      "$1",
       "$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
       "",
-      "$1",
+      "$2",
       "$BLOCK_COMMENT_END",
       "",
       "from typing import List, Optional",
