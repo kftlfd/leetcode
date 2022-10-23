@@ -68,6 +68,7 @@
       "        print('input:  ', inp)",
       "        print('expect: ', exp)",
       "        print('output: ', res)",
+      "        print()",
       "print('Completed testing')",
       ""
     ],
