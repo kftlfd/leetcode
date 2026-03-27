@@ -1,5 +1,8 @@
 {
   "pylint.args": [
     "--disable=missing-docstring,invalid-name,too-few-public-methods,too-many-arguments,line-too-long"
-  ]
+  ],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  }
 }
