@@ -1,0 +1,147 @@
+"""
+Leetcode
+2026-08-28
+3734. Lexicographically Smallest Palindromic Permutation Greater Than Target
+Hard
+
+You are given two strings s and target, each of length n, consisting of lowercase English letters.
+
+Return the string that is both a of s and strictly greater than target. If no such permutation exists, return an empty string.
+
+ 
+
+Example 1:
+
+Input: s = "baba", target = "abba"
+
+Output: "baab"
+
+Explanation:
+
+    The palindromic permutations of s (in lexicographical order) are "abba" and "baab".
+    The lexicographically smallest permutation that is strictly greater than target is "baab".
+
+Example 2:
+
+Input: s = "baba", target = "bbaa"
+
+Output: ""
+
+Explanation:
+
+    The palindromic permutations of s (in lexicographical order) are "abba" and "baab".
+    None of them is lexicographically strictly greater than target. Therefore, the answer is "".
+
+Example 3:
+
+Input: s = "abc", target = "abb"
+
+Output: ""
+
+Explanation:
+
+s has no palindromic permutations. Therefore, the answer is "".
+
+Example 4:
+
+Input: s = "aac", target = "abb"
+
+Output: "aca"
+
+Explanation:
+
+    The only palindromic permutation of s is "aca".
+    "aca" is strictly greater than target. Therefore, the answer is "aca".
+
+ 
+
+Constraints:
+
+    1 <= n == s.length == target.length <= 300
+    s and target consist of only lowercase English letters.
+
+
+Hint 1
+A palindromic permutation exists only if at most one character has an odd count (for odd-length strings) or all counts are even (for even-length strings).
+Hint 2
+Focus on constructing the first half of the palindrome. The second half is determined by mirroring.
+Hint 3
+To be lexicographically greater than target, the first half must be greater than or equal to target's first half, with careful handling of the middle character for odd-length strings.
+Hint 4
+Use a backtracking approach or greedy selection for each position in the first half, trying the smallest available character that can still produce a valid palindrome.
+Hint 5
+After building the first half, mirror it (and add the middle character if needed) to form the full palindrome and verify it is strictly greater than target.
+"""
+
+
+class Solution1:
+    """
+    leetcode solution: Sequential Enumeration
+    Runtime 443ms Beats 7.57%
+    Memory 19.44MB Beats 68.18%
+    """
+
+    def lexPalindromicPermutation(self, s: str, target: str) -> str:
+        n = len(s)
+        # Special case: length of 1
+        if n == 1:
+            return s if s > target else ""
+
+        # Count the frequency of each character
+        cnt = [0] * 26
+        for c in s:
+            cnt[ord(c) - ord("a")] += 1
+
+        # Check if it can form a palindrome and record the characters with odd occurrences
+        odd_char = ""
+        for i in range(26):
+            if cnt[i] % 2 == 1:
+                # More than one character appears an odd number of times, cannot form a palindrome
+                if odd_char != "":
+                    return ""
+                odd_char = chr(ord("a") + i)
+            cnt[
+                i
+            ] //= 2  # It takes only half the characters to construct the left half
+
+        prefix = []
+
+        def check(c):
+            left = prefix.copy()
+            left.append(c)
+            for i in range(25, -1, -1):
+                left.extend([chr(ord("a") + i)] * cnt[i])
+
+            palindrome = left + [odd_char] + left[::-1]
+
+            return "".join(palindrome) > target
+
+        # Construct the left part of each digit greedily
+        for i in range(n // 2):
+            found = False
+            # Try to place the smallest character in lexicographical order
+            for j in range(26):
+                if cnt[j] == 0:
+                    continue
+
+                cnt[j] -= 1
+                if check(chr(ord("a") + j)):
+                    # If the constructed palindrome is greater than target, choose the character
+                    prefix.append(chr(ord("a") + j))
+                    found = True
+                    break
+                else:
+                    cnt[j] += 1  # Not meeting the conditions, reset the counter
+            if not found:
+                return ""  # Cannot construct a palindrome larger than target
+
+            if prefix[i] > target[i]:  # prefix is already greater than target
+                left = prefix[:]
+                for j in range(26):
+                    left.extend([chr(ord("a") + j)] * cnt[j])
+                palindrome = left + [odd_char] + left[::-1]
+                return "".join(palindrome)
+
+        # Construct the final palindrome string
+        ans = prefix + [odd_char] + prefix[::-1]
+        return "".join(ans)
